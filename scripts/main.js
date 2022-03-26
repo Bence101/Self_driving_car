@@ -50,13 +50,4 @@ function draw() {
   trackBuilder.display();
 }
 
-// function mousePressed() {
-//   trackBuilder.addNode(createVector(mouseX, mouseY));
-// }
 
-
-function preload() {
-  // preload() runs once
-  carPicture = loadImage('redcar.png');
-  trackPicture = loadImage('track_1.png');
-}

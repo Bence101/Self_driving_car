@@ -74,4 +74,8 @@ window.keyPressed = (e) => (trackBuilder.keyPressed())
 
 
 
-
+function preload() {
+  // preload() runs once
+  carPicture = loadImage('assets/redcar.png');
+  trackPicture = loadImage('assets/track_1.png');
+}
