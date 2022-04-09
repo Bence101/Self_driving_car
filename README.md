@@ -26,12 +26,14 @@ Welcome to my simulation!
     
 ## TODO
   - [ ] Kód tisztítás, rendezés. A sok ötlet kipróbálása szétzilálta az eredeti rendszert...
+    - [ ] Mindenféle debug ki-be kapcsoló létrehozása
+  - [ ] Leírás készítése a használathoz (pl a trackbuilder, különböző gombok stb)
   - [ ] Saját egyszerűsített nn osztályt írni, ami csak arra képes, amire nekem van szükségem.
   - [ ] NN vizualizáció
   - [ ] A korábbi projektekhez hasonlóan chartok létrehozása (fitness progress, finish rate stb.)
   - [ ] A global változókat tedd be egy statikus osztályba, vagy egy normál json fájlba.
   - [ ] UI létrehozása (sim speed, 1-2 globális változó manipulálása)
-  - [ ] Mivel a P5JS nem képes pixcel perfect ütközés detektálásra, felesleges pixel alapú pályát létrehozni és hozzá pixel alapú ütközés detektálást használni, mert nagyon erőforrás igényes. Sima egyenes alapúra alakítsd át
+  - [x] Mivel a P5JS nem képes pixcel perfect ütközés detektálásra, felesleges pixel alapú pályát létrehozni és hozzá pixel alapú ütközés detektálást használni, mert nagyon erőforrás igényes. Sima egyenes alapúra alakítsd át.
   - [ ] Az autó jelenleg a középpontja körül forog nem a kerekeknek megfelelően, mint a python változat. Ezt javítani kell.
   
 
