@@ -47,7 +47,7 @@ class Car {
     this.vel = p5.Vector.fromAngle(this.heading, this.speed);
     this.pos.add(this.vel);
     this.setCornerPoints(-5);
-    this.updatePolyCollider(this.cornerPoints);
+    this.polyCollider.update(this.cornerPoints);
     this.radarCollider.update(this.pos, this.heading);
     this.sumSpeed += this.speed;
     this.cntFrames++;
@@ -124,12 +124,12 @@ class Car {
     
     for (let i = 0; i < checkpoints.length; i++) {
       let checkpoint = checkpoints[i];
-      let tmpChekpointIntersection = Utils.segmentIntersection(checkpoint.start,
+      let chekpointIntersection = Utils.segmentIntersection(checkpoint.start,
                                                             checkpoint.end,
                                                             this.pos, headPoint)
-      if (tmpChekpointIntersection) {
+      if (chekpointIntersection) {
         if (checkpoint.num == this.score + 1) {
-          this.lastChekpointIntersection = tmpChekpointIntersection.copy();
+          this.lastChekpointIntersection = chekpointIntersection.copy();
           // ez hibára fog futni, ha kifogyunk a checkpointokból!
           if (i+1 < checkpoints.length) {
             this.nextCheckpointCenter = checkpoints[i + 1].center;
@@ -179,9 +179,6 @@ class Car {
     if (this.collision) {this.isAlive = 0}
   }
 
-  updatePolyCollider() {
-    this.polyCollider.update(this.cornerPoints);
-  }
 
   setCornerPoints(absResize = 0) {
     // source: https://gamedev.stackexchange.com/questions/86755/how-to-calculate-corner-positions-marks-of-a-rotated-tilted-rectangle

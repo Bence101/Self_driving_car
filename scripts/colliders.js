@@ -91,7 +91,6 @@ class PolyCollider {
   }
 
   checkForCollision(object) {
-    let collisions = [];
     for (let lineCollider of this.lineColliders) {
       let collision = lineCollider.checkForCollision(object);
       if (collision) {
@@ -137,22 +136,33 @@ class LineCollider {
   }
 
   checkForCollision(object) {
-    let angle = Math.atan2(
-      this.posEnd.y - this.posStart.y,
-      this.posEnd.x - this.posStart.x
-    );
-    let dist = this.posStart.dist(this.posEnd);
-
-    for (let i = 0; i <= dist; i++) {
-      let currentPoint = p5.Vector.fromAngle(angle, i);
-      currentPoint.add(this.posStart);
-      if (object.checkCollision(currentPoint)) {
-        this.firstCollision = currentPoint.copy();
-        return currentPoint.copy();
-      }
+    let collisionPos = object.checkCollision(this.posStart, this.posEnd);
+    if (collisionPos) {
+      this.firstCollision = collisionPos.copy()
     }
-    return undefined;
+    
+    // print(collisionPos)
+    return collisionPos
   }
+
+  // checkForCollision(object) {
+  //   // original point based collision checker
+  //   let angle = Math.atan2(
+  //     this.posEnd.y - this.posStart.y,
+  //     this.posEnd.x - this.posStart.x
+  //   );
+  //   let dist = this.posStart.dist(this.posEnd);
+
+  //   for (let i = 0; i <= dist; i++) {
+  //     let currentPoint = p5.Vector.fromAngle(angle, i);
+  //     currentPoint.add(this.posStart);
+  //     if (object.checkCollision(currentPoint)) {
+  //       this.firstCollision = currentPoint.copy();
+  //       return currentPoint.copy();
+  //     }
+  //   }
+  //   return undefined;
+  // }
 
   display() {
     push();

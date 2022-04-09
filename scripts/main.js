@@ -3,7 +3,7 @@ currentGen = 0;
 
 function setup() {
   createCanvas(canvasSize[0], canvasSize[1]);
-  track = new Track(createVector(0, 0), trackPicture, checkpointList);
+  track = new Track(createVector(0, 0), trackData);
   testText = createP('test');
   START_POINT = createVector(start[0], start[1]);
   population = new Population(popSize, 200);
@@ -23,7 +23,7 @@ function draw() {
       
     if ((!population.hasAlive) || (population.age>=maxSimLength)) {
       population.calculateFitnesses();
-      // print(population.maxScore, currentGen, population.maxFitness)
+      print(population.maxScore, currentGen, population.maxFitness)
 
       // creating new population from the previous generation
       population = new Population(popSize, 200, population);
@@ -43,7 +43,6 @@ function draw() {
       i-=1;
     }
   }
-  
   
   track.display();
   population.display();

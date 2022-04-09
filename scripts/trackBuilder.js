@@ -1,6 +1,10 @@
 class TrackBuilder {
-  constructor() {
-    this.nodeListOfList = [[], [], []]
+  constructor(trackData) {
+    this.nodeListOfList = [[], [], []];
+    if (trackData) {
+      this.loadTrack(trackData);
+    }
+    
     this.currentCircle = 0;
     this.selectedNode = undefined;
     this.mode = 0; // 0: side1, 1: side2, 2: checkpoint
@@ -8,6 +12,7 @@ class TrackBuilder {
     // elvben a checkpointok is mehetnek 1 listába, ha a törlésnél egyszerre mindig kettőt törlünk; arra viszont itt figyelni kell, hogyha pl párosat törlünk, akkor az utánalévőt ha páratlant akkor az előtte lévőt töröljük velük együtt. Illetve ott nincs értelme a selectionnak. Elvben ez a két szabáj elég lehet, hogy a lenti logikát minél jobban újra tudjuk használni. 
 
   }
+
 
   update(points) {
 
@@ -100,16 +105,19 @@ class TrackBuilder {
     }
     save({"nodeListOfList": output}, 'track.json')
   }
+
   
-  loadTrack(jsonFile) {
-    let loadedNodeListOfList = jsonFile.nodeListOfList;
-    this.nodeListOfList = [[], [], []]
+  loadTrack(trackData) {
+    let loadedNodeListOfList = trackData.nodeListOfList;
+    this.nodeListOfList = [[], [], []];
     
     for (let i = 0; i < loadedNodeListOfList.length; i += 1) {
       let loadedNodeList = loadedNodeListOfList[i];
-      for (let j = 0; j < nodeList.length; j += 1) {
-        let node = nodeList[j]
-        output[i].push([node.pos.x, node.pos.y])
+      for (let j = 0; j < loadedNodeList.length; j += 1) {
+        let loadedNode = loadedNodeList[j];
+        let pos = createVector(loadedNode[0], loadedNode[1])
+        let newNode = new TrackNode(pos)
+        this.nodeListOfList[i].push(newNode)
       }
     }
   }
