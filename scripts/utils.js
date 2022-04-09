@@ -29,4 +29,11 @@ class Utils {
     let shiftValue = random(-mutationRate, mutationRate)
     return elem + shiftValue;
   }
+
+  static onCanvas(x, y) {
+    if (x<0 || x>canvasSize[0] || y<0 || y > canvasSize[1]) {
+      return 0
+    }
+    return 1
+  }
 }

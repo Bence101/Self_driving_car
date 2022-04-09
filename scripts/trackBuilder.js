@@ -3,7 +3,6 @@ class TrackBuilder {
     this.nodeListOfList = [[], [], []]
     this.currentCircle = 0;
     this.selectedNode = undefined;
-    this.mode = 'side1'; 
     this.mode = 0; // 0: side1, 1: side2, 2: checkpoint
     // ahelyett, hogy mindig a .nodes-t töltöm hozz létre három listát és mindent írj át úgy, hogy ezeket a listákat töltsd a node-oknak megfelelően
     // elvben a checkpointok is mehetnek 1 listába, ha a törlésnél egyszerre mindig kettőt törlünk; arra viszont itt figyelni kell, hogyha pl párosat törlünk, akkor az utánalévőt ha páratlant akkor az előtte lévőt töröljük velük együtt. Illetve ott nincs értelme a selectionnak. Elvben ez a két szabáj elég lehet, hogy a lenti logikát minél jobban újra tudjuk használni. 
@@ -42,8 +41,7 @@ class TrackBuilder {
     let nodeList = this.getNodeList();
 
     this.selectedNode = undefined;
-    // this is a simple inplace filter
-    // source: https://stackoverflow.com/questions/37318808/what-is-the-in-place-alternative-to-array-prototype-filter
+
     if (this.mode == 2) {
       // for checkpoints we delete them as pairs
       for (let i = 0; i < nodeList.length; i += 1) {
@@ -58,10 +56,11 @@ class TrackBuilder {
         }
       }
     } else {
+      // this is a simple inplace filter
+      // source: https://stackoverflow.com/questions/37318808/what-is-the-in-place-alternative-to-array-prototype-filter
       nodeList.splice(0, nodeList.length, 
                       ...nodeList.filter(node => !node.onIt(pos)))
     }
-    
   }
   
   selectNode(pos) {
@@ -75,9 +74,8 @@ class TrackBuilder {
     return selection;
   }
   
-  
-  
   mousePressed() {
+    if (!Utils.onCanvas(mouseX, mouseY)) {return}
     let mousePos = createVector(mouseX, mouseY);
     if (mouseButton == LEFT) {
       let hasSelectedNode = this.selectNode(mousePos);

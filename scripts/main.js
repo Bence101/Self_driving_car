@@ -2,7 +2,7 @@
 currentGen = 0;
 
 function setup() {
-  createCanvas(800, 600);
+  createCanvas(canvasSize[0], canvasSize[1]);
   track = new Track(createVector(0, 0), trackPicture, checkpointList);
   testText = createP('test');
   START_POINT = createVector(start[0], start[1]);

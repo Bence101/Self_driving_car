@@ -57,6 +57,7 @@ let checkpointList = [
 
 
 // global variables
+let canvasSize = [800, 600]
 let population;
 let carPicture;
 let testText;
@@ -78,4 +79,6 @@ function preload() {
   // preload() runs once
   carPicture = loadImage('assets/redcar.png');
   trackPicture = loadImage('assets/track_1.png');
+  trackData = loadJSON('assets/track_1.json')
+  print(trackData)
 }
