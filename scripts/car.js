@@ -6,7 +6,7 @@ class Car {
     this.minSpeed = carMinSpeed; // no reverse or stop
     this.directSteeringSpeed = carDirectSteeringSpeed;
     this.directSpeedChangeMagnitude = carDirectSpeedChangeMagnitude;
-    this.maxSpeed = carNaxSpeed;
+    this.maxSpeed = carMaxSpeed;
 
         
     this.speed = this.minSpeed;
@@ -130,7 +130,6 @@ class Car {
       if (chekpointIntersection) {
         if (checkpoint.num == this.score + 1) {
           this.lastChekpointIntersection = chekpointIntersection.copy();
-          // ez hibára fog futni, ha kifogyunk a checkpointokból!
           if (i+1 < checkpoints.length) {
             this.nextCheckpointCenter = checkpoints[i + 1].center;
           }
@@ -152,8 +151,8 @@ class Car {
     
     let baseFitness = this.score;
     let partialFitness = 0;
-    let avgSpeed = this.sumSpeed / this.cntFrames;
-    let speedCorrection = map(avgSpeed, 
+    this.avgSpeed = this.sumSpeed / this.cntFrames;
+    let speedCorrection = map(this.avgSpeed, 
                               this.minSpeed, this.maxSpeed, 
                               slownessPenalty, fastnessReward);
     if (this.lastChekpointIntersection) {

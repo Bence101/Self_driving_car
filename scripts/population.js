@@ -90,6 +90,7 @@ class Population {
         this.maxScore=agent.score;
         this.bestNum = i
         this.bestNN = agent.brain.nn.copy();
+        this.bestAvgSpeed = agent.avgSpeed;
       }
       this.sumFitness+=agent.fitness
     }
